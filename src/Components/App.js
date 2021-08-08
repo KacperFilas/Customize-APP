@@ -1,7 +1,7 @@
 import './app.css';
 
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Customizer from './Customizer';
 import Savedlist from './saved-list';
 import CreateNew from './create-new';
@@ -9,7 +9,7 @@ import CreateNew from './create-new';
 const App = () => {
   return (
     <div className="app-container">
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route path="/customizer">
             <Customizer />
@@ -21,7 +21,7 @@ const App = () => {
             </div>
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };
