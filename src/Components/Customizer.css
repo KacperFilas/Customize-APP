@@ -1,0 +1,24 @@
+.customizer-container {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.color-picker-wrapper {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 0 0 65px 0;
+  z-index: 1;
+}
+
+.save-button {
+  position: absolute;
+  top: 1;
+  bottom: 0;
+}

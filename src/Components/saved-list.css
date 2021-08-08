@@ -1,0 +1,26 @@
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  vertical-align: middle;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul img {
+  object-fit: cover;
+  display: block;
+  width: 250px;
+  height: 200px;
+  transition: 0.5s;
+}
+
+ul img:hover {
+  transform: scale(1.3);
+}
