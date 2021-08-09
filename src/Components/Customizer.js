@@ -90,7 +90,6 @@ const Customizer = ({ activeElement, setActiveElement }) => {
       setCameraToDefault();
 
       const url = await storeCanvas();
-      console.log(url);
 
       const res = await post({ currentColors, url });
 
@@ -105,7 +104,6 @@ const Customizer = ({ activeElement, setActiveElement }) => {
       setCameraToDefault();
 
       const url = await storeCanvas();
-      console.log(url);
 
       const obj = { id: activeElement.id, materials: currentColors, img: url };
 
