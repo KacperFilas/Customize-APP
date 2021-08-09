@@ -11,7 +11,6 @@ const Savedlist = ({ getSavedData, data, setActiveElement }) => {
 
   useEffect(() => {
     getSavedData();
-    console.log('fetching');
 
     return history.listen((location) => {
       return location;
