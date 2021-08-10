@@ -11,6 +11,8 @@ ul {
 
 ul li {
   list-style: none;
+  background-color: rgba(120, 96, 175, 0.144);
+  margin: 20px;
 }
 
 ul img {

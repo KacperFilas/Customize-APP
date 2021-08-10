@@ -17,8 +17,8 @@ const App = () => {
           <Route path="/">
             <div className="list-container">
               <Savedlist />
-              <CreateNew />
             </div>
+            <CreateNew />
           </Route>
         </Switch>
       </HashRouter>
