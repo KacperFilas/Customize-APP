@@ -3,7 +3,15 @@ import React from 'react';
 
 const Spinner = () => {
   return (
-    <video id="spinner" src="/loading.webm" playsInline autoPlay muted loop />
+    <video
+      id="spinner"
+      src="/loading.webm"
+      disableRemotePlayback
+      playsInline
+      autoPlay
+      muted
+      loop
+    />
   );
 };
 
