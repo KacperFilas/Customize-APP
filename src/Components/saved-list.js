@@ -1,16 +1,23 @@
 import './saved-list.css';
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getSavedData, setActiveElement } from '../state/action-creators';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import Spinner from './loading-spinner';
 
 const Savedlist = ({ getSavedData, data, setActiveElement }) => {
   const history = useHistory();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    getSavedData();
+    setLoading(true);
+    (async function () {
+      await getSavedData();
+      setLoading(false);
+    })();
 
     return history.listen((location) => {
       return location;
@@ -41,7 +48,7 @@ const Savedlist = ({ getSavedData, data, setActiveElement }) => {
     }
   };
 
-  return <ul className="list">{createList(data)}</ul>;
+  return loading ? <Spinner /> : <ul className="list">{createList(data)}</ul>;
 };
 
 const mapStateToProps = (state) => {

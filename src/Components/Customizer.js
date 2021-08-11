@@ -12,6 +12,7 @@ import { patch, post } from '../api/apiCalls';
 
 import Controller from '../models/Ps5controller';
 import Chromepicker from './color-picker';
+import Spinner from './loading-spinner';
 
 const Customizer = ({ activeElement, setActiveElement }) => {
   const [mesh, setMesh] = useState(null);
@@ -114,45 +115,47 @@ const Customizer = ({ activeElement, setActiveElement }) => {
   };
 
   return (
-    <div className="customizer-container">
-      <div className="color-picker-wrapper" ref={colorPicker}>
-        <Chromepicker mesh={mesh} />
-      </div>
+    <Suspense fallback={<Spinner />}>
+      <div className="customizer-container">
+        <div className="color-picker-wrapper hide" ref={colorPicker}>
+          <Chromepicker mesh={mesh} />
+        </div>
 
-      <Canvas id="canvas" shadows gl={{ preserveDrawingBuffer: true }}>
-        <PerspectiveCamera
-          ref={myCamera}
-          makeDefault={true}
-          position={[0, 3, 0]}
-          rotation={[0, 0, 0]}
-          zoom={0.8}
-        />
+        <Canvas id="canvas" shadows gl={{ preserveDrawingBuffer: true }}>
+          <PerspectiveCamera
+            ref={myCamera}
+            makeDefault={true}
+            position={[0, 3, 0]}
+            rotation={[0, 0, 0]}
+            zoom={0.8}
+          />
 
-        <OrbitControls
-          ref={orbit}
-          camera={myCamera.current}
-          enablePan={false}
-          minDistance={2}
-          maxDistance={4}
-        />
+          <OrbitControls
+            ref={orbit}
+            camera={myCamera.current}
+            enablePan={false}
+            minDistance={2}
+            maxDistance={4}
+          />
 
-        <ambientLight intensity={0.1} />
-        <spotLight intensity={0.5} position={[0, 1, -2]} />
-        <Suspense fallback={null}>
+          <ambientLight intensity={0.1} />
+          <spotLight intensity={0.5} position={[0, 1, -2]} />
+
           <Controller
             setMesh={setMesh}
             currentColors={currentColors}
             storeColors={storeColors}
           />
-        </Suspense>
-      </Canvas>
-      <button
-        className="save-button"
-        onClick={activeElement ? patchData : postData}
-      >
-        Save
-      </button>
-    </div>
+        </Canvas>
+
+        <button
+          className="save-button"
+          onClick={activeElement ? patchData : postData}
+        >
+          Save
+        </button>
+      </div>
+    </Suspense>
   );
 };
 
