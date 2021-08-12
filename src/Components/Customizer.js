@@ -23,14 +23,17 @@ const Customizer = ({ activeElement, setActiveElement }) => {
   const orbit = useRef(null);
 
   useEffect(() => {
-    if (activeElement) {
-      if (activeElement.materials) {
-        setCurrentColors(activeElement.materials);
-      }
-    } else {
+    const storage = localStorage.getItem('activeElement');
+
+    if (activeElement.materials) {
+      setCurrentColors(activeElement.materials);
+      localStorage.setItem('activeElement', JSON.stringify(activeElement));
       return;
-    }
-  }, [activeElement]);
+    } else if (storage) {
+      setActiveElement(JSON.parse(localStorage.getItem('activeElement')));
+      return;
+    } else return;
+  }, [activeElement, setActiveElement]);
 
   // show hide logic for color picker
   useEffect(() => {
@@ -84,6 +87,9 @@ const Customizer = ({ activeElement, setActiveElement }) => {
     }
 
     setCurrentColors(colors);
+    const storage = JSON.parse(localStorage.getItem('activeElement'));
+    storage.materials = colors;
+    localStorage.setItem('activeElement', JSON.stringify(storage));
   };
 
   const postData = async () => {
