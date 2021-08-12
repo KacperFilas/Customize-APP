@@ -24,8 +24,9 @@ const Customizer = ({ activeElement, setActiveElement }) => {
 
   useEffect(() => {
     const storage = localStorage.getItem('activeElement');
-
-    if (activeElement.materials) {
+    if (activeElement === null) {
+      return;
+    } else if (activeElement.materials) {
       setCurrentColors(activeElement.materials);
       localStorage.setItem('activeElement', JSON.stringify(activeElement));
       return;
