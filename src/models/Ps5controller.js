@@ -7,7 +7,7 @@ const Controller = (props) => {
 
   useEffect(() => {
     // On every click store colors so that it always is updated when user wants to save
-    const func = (e) => {
+    const func = () => {
       props.storeColors(materials);
     };
 

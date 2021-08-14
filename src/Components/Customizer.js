@@ -1,5 +1,6 @@
 import './Customizer.css';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Canvas } from '@react-three/fiber';
 
@@ -124,6 +125,9 @@ const Customizer = ({ activeElement, setActiveElement }) => {
   return (
     <Suspense fallback={<Spinner />}>
       <div className="customizer-container">
+        <Link to="/">
+          <button className="back-button">BACK</button>
+        </Link>
         <div className="color-picker-wrapper hide" ref={colorPicker}>
           <Chromepicker mesh={mesh} />
         </div>
